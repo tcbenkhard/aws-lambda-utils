@@ -10,8 +10,8 @@ export abstract class ApiGatewayHandler<Request, Response> {
         this.options = options
     }
 
-    protected abstract parseEvent(event: APIGatewayProxyEvent, Context: Context): Request;
-    protected abstract handleRequest(request: Request): Response
+    protected abstract parseEvent(event: APIGatewayProxyEvent, Context: Context): Promise<Request>;
+    protected abstract handleRequest(request: Request): Promise<Response>
 
     public async handler(event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
         try {
