@@ -16,14 +16,19 @@ export abstract class ApiGatewayHandler<Request, Response> {
     public async handler(event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
         try {
             const request = await this.parseEvent(event, context)
+            console.log('Parsed event as', request);
             const response = await this.handleRequest(request)
+            console.log('Handled request with result', response)
             return {
                 ...this.options,
                 body: JSON.stringify(response)
             }
         } catch (exception) {
+            console.error(exception)
             let error = new InternalServerError() // Defaults to internal server error
-            if(exception instanceof ApiError) error = exception
+            if(exception instanceof ApiError) {
+                error = exception
+            }
             return {
                 ...this.options,
                 statusCode: error.statusCode,
