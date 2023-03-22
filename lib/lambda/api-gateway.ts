@@ -16,7 +16,7 @@ export abstract class ApiGatewayHandler<Request, Response> {
     public async handler(event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
         try {
             const request = await this.parseEvent(event, context)
-            if(this.options.logRequest == true) console.log('Parsed event as', request);
+            if(this.options.logRequest) console.log('Parsed event as', request);
             const response = await this.handleRequest(request)
             console.log('Handled request with result', response)
             return {
