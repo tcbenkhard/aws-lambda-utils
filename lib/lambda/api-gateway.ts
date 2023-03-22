@@ -1,7 +1,7 @@
 import {APIGatewayProxyEvent, APIGatewayProxyResult, Context} from "aws-lambda";
 import {ApiError, InternalServerError} from "../error/api-gateway";
 
-interface ApiGatewayHandlerOptions extends Exclude<APIGatewayProxyResult, "body">{
+interface ApiGatewayHandlerOptions extends Omit<APIGatewayProxyResult, 'body'>{
 
 }
 export abstract class ApiGatewayHandler<Request, Response> {
