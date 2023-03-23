@@ -2,6 +2,9 @@
   "name": "aws-lambda-utils",
   "version": "1.0.0",
   "type": "module",
+  "files": [
+    "/lib"
+  ],
   "description": "Utilities used to simplify Lambda development",
   "main": "index.js",
   "scripts": {
